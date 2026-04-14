@@ -143,36 +143,38 @@ body {
   display: block;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey-mid);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .prayer-textarea {
   width: 100%;
-  background: var(--white);
-  border: 1px solid var(--grey-border);
-  border-radius: 2px;
-  padding: 16px;
-  font-family: var(--ff-ui);
-  font-size: 15px;
-  font-weight: 300;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--grey-border);
+  border-radius: 0;
+  padding: 0 0 16px;
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--black);
   resize: none;
   outline: none;
   transition: border-color .2s;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.7;
+  margin-bottom: 32px;
 }
 .prayer-textarea:focus { border-color: var(--black); }
-.prayer-textarea::placeholder { color: var(--grey-mid); }
+.prayer-textarea::placeholder { color: var(--grey-mid); font-style: italic; }
 
 .select-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 24px;
+  margin-bottom: 36px;
 }
 
 .select-wrap { display: flex; flex-direction: column; }
@@ -180,10 +182,11 @@ body {
 .select-wrap select {
   appearance: none;
   -webkit-appearance: none;
-  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
-  border: 1px solid var(--grey-border);
-  border-radius: 2px;
-  padding: 11px 36px 11px 14px;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 4px center;
+  border: none;
+  border-bottom: 1px solid var(--grey-border);
+  border-radius: 0;
+  padding: 8px 24px 8px 0;
   font-family: var(--ff-ui);
   font-size: 14px;
   font-weight: 400;
@@ -200,11 +203,11 @@ body {
   color: var(--white);
   border: none;
   border-radius: 2px;
-  padding: 16px 24px;
+  padding: 18px 24px;
   font-family: var(--ff-ui);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   cursor: pointer;
   transition: background .2s;
 }
@@ -549,6 +552,100 @@ body {
   transition: color .15s;
 }
 .footer-agents a:hover { color: var(--black); }
+
+/* ============================================================
+   LIGHT A CANDLE
+   ============================================================ */
+.candle-section {
+  background: var(--grey-light);
+  padding: 100px 0;
+  border-top: 1px solid var(--grey-border);
+}
+
+.candle-inner {
+  text-align: center;
+  max-width: 640px;
+}
+
+.candle-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-mid);
+  margin-bottom: 16px;
+}
+
+.candle-headline {
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+}
+.candle-headline .line-grotesque {
+  display: block;
+  font-family: var(--ff-ui);
+  font-weight: 700;
+}
+.candle-headline .line-serif {
+  display: block;
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.candle-body {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--grey-mid);
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.candle-amounts {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.candle-amount {
+  background: var(--white);
+  border: 1.5px solid var(--grey-border);
+  border-radius: 2px;
+  padding: 13px 36px;
+  font-family: var(--ff-ui);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--grey-mid);
+  cursor: pointer;
+  transition: all .15s;
+  letter-spacing: -0.01em;
+}
+.candle-amount:hover { border-color: var(--black); color: var(--black); }
+.candle-amount--active {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-candle {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  padding: 18px 52px;
+  font-family: var(--ff-ui);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.btn-candle:hover { background: #333; }
 
 /* ============================================================
    SUB-PAGE STYLES

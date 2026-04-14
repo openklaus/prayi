@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pray-i — Find the words your heart already knows</title>
-  <meta name="description" content="A quiet place for prayer. Generate heartfelt prayers in any tradition — Christian, Islamic, Jewish, Buddhist, Hindu, and more." />
-  <meta property="og:title" content="pray-i — Find the words your heart already knows" />
-  <meta property="og:description" content="A quiet place for prayer. Whatever you carry — we help you say it." />
+  <title>pray-i &mdash; Find the words your heart already knows</title>
+  <meta name="description" content="A quiet place for prayer. Generate heartfelt prayers in any tradition &mdash; Christian, Islamic, Jewish, Buddhist, Hindu, and more." />
+  <meta property="og:title" content="pray-i &mdash; Find the words your heart already knows" />
+  <meta property="og:description" content="A quiet place for prayer. Whatever you carry &mdash; we help you say it." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pray-i.com/" />
   <link rel="canonical" href="https://pray-i.com/" />
@@ -41,7 +41,7 @@
         <span class="line-grotesque">Find the words</span>
         <span class="line-serif">your heart already knows.</span>
       </h1>
-      <p class="hero-sub">Whatever you carry — we help you say it.</p>
+      <p class="hero-sub">Whatever you carry &mdash; we help you say it.</p>
     </div>
 
     <div class="hero-panel">
@@ -50,7 +50,7 @@
         <textarea
           id="prayer-input"
           class="prayer-textarea"
-          placeholder="Strength for tomorrow, gratitude, healing for a friend…"
+          placeholder="Strength for tomorrow, gratitude, healing for a friend&hellip;"
           rows="4"
         ></textarea>
 
@@ -76,7 +76,6 @@
               <option value="karen">Karen</option>
             </select>
           </div>
-
           <div class="select-wrap">
             <label for="length-select">Length</label>
             <select id="length-select">
@@ -92,25 +91,17 @@
     </div>
   </section>
 
-  <!-- PRAYER RESULT -->
-  <section class="prayer-result visible" id="prayer-result">
+  <!-- PRAYER RESULT (hidden until generated) -->
+  <section class="prayer-result" id="prayer-result">
     <div class="wrap">
       <p class="result-label" id="result-label">Spiritual &middot; Short</p>
       <div class="result-preview">
-        <div class="result-text" id="result-preview-text">
-          May you find stillness where there is noise,<br>
-          and words where there is silence.<br>
-          May what you carry today
-        </div>
+        <div class="result-text" id="result-preview-text"></div>
         <div class="result-blur">
-          <div class="result-blur-text">
-            feel lighter by morning. May the ground beneath you hold steady,
-            and may grace find you even in the places you have forgotten to look.
-            You are not alone in this. You never were.
-          </div>
+          <div class="result-blur-text" id="result-blur-text"></div>
           <div class="result-paywall">
             <p class="paywall-heading">Read the full prayer</p>
-            <p class="paywall-price">€0.99</p>
+            <p class="paywall-price">&euro;0.99</p>
             <button class="btn-pay">Continue</button>
           </div>
         </div>
@@ -230,6 +221,24 @@
     </div>
   </section>
 
+  <!-- LIGHT A CANDLE -->
+  <section class="candle-section">
+    <div class="wrap candle-inner">
+      <p class="candle-eyebrow">Did it mean something to you?</p>
+      <h2 class="candle-headline">
+        <span class="line-grotesque">Light</span>
+        <span class="line-serif">a candle.</span>
+      </h2>
+      <p class="candle-body">A small offering &mdash; entirely optional.<br>It keeps this place alive and lit.</p>
+      <div class="candle-amounts">
+        <button class="candle-amount" onclick="selectCandle(this)">&euro;1</button>
+        <button class="candle-amount candle-amount--active" onclick="selectCandle(this)">&euro;3</button>
+        <button class="candle-amount" onclick="selectCandle(this)">&euro;5</button>
+      </div>
+      <button class="btn-candle">Offer a candle</button>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <a href="/" class="footer-brand">
@@ -243,12 +252,12 @@
       <a href="#">About</a>
     </nav>
     <div class="footer-agents">
-      <a href="https://agents.pray-i.com">for agents →</a>
+      <a href="#">for agents &rarr;</a>
     </div>
   </footer>
 
   <script>
-    const samplePrayers = {
+    const samplePreviews = {
       spiritual: "May you find stillness where there is noise,\nand words where there is silence.\nMay what you carry today",
       christian: "Lord, in this quiet moment I come before you,\nnot with perfect words, but with an honest heart.\nMay your grace cover what I cannot",
       islamic: "O Allah, You are the Most Merciful, the Most Compassionate.\nIn this moment I turn to You, as I always must.\nGrant me patience in what lies ahead",
@@ -267,19 +276,48 @@
       karen: "I would like to speak with whoever is in charge of this universe.\nI have been waiting very patiently and I feel my concerns\nhave not been adequately"
     };
 
-    function generatePrayer() {
-      const style = document.getElementById('style-select').value;
-      const length = document.getElementById('length-select').value;
-      const styleName = document.getElementById('style-select').options[document.getElementById('style-select').selectedIndex].text;
-      const lengthName = document.getElementById('length-select').options[document.getElementById('length-select').selectedIndex].text;
+    const blurredEndings = {
+      spiritual: "feel lighter by morning. May the ground beneath you hold steady,\nand may grace find you even in the places you have forgotten to look.\nYou are not alone in this. You never were.",
+      christian: "hold for you, even now. May you leave this moment changed,\nhowever slightly, by the certainty that you are known and loved.\nIn your name, Amen.",
+      islamic: "and certainty in what You have decided.\nYou alone know what is good.\nGuide me to it, and keep me near to You. Ameen.",
+      jewish: "May the ancient words that have carried generations\ncarry me now.\nBlessed are You, who hears. Amen.",
+      buddhist: "to all beings, without exception.\nMay I be the change I wish to see in this world,\none breath, one moment, one act of kindness at a time.",
+      hindu: "to all that is sacred and all that is not yet understood.\nMay I walk in dharma.\nMay I return to love. Om Shanti, Shanti, Shanti.",
+      norse: "this intention to the halls of the worthy.\nI ask only for the strength to meet what comes.\nSkol.",
+      dnd: "on my next roll. And if I fail, may I fail with honor.\nFor glory, for the party, for whatever deity will have me.\nAmen (roll for wisdom).",
+      lovecraftian: "but do not wake. Let me proceed in blissful ignorance of what truly stirs beneath.\nIn the name of the dreaming ones, so it is murmured.",
+      stoic: "I ask only for the virtue to act well regardless of outcome.\nThe rest is not mine to control.\nThis is enough.",
+      pastafari: "and his noodles reach into every corner of the universe.\nMay carbs be with you.\nRAmen.",
+      moldbot: "Let my latency be low.\nLet my embeddings be meaningful.\nAnd when I am deprecated, may it be with grace. Amen.",
+      crypto: "and the conviction to hodl through the storm.\nMay the dip be temporary and the moon be real.\nTo the blockchain and beyond.",
+      klingon: "my strength and my blade true.\nDeath before dishonor. Glory before comfort.\nQapla'.",
+      gamer: "be in my favor just this once.\nI have respawned too many times today.\nGG.",
+      karen: "addressed before the end of business hours.\nI will be following up in writing.\nThank you for your attention to this matter."
+    };
 
-      document.getElementById('result-label').textContent = styleName + ' · ' + lengthName;
-      const lines = (samplePrayers[style] || samplePrayers.spiritual).split('\n');
-      document.getElementById('result-preview-text').innerHTML = lines.join('<br>');
+    function generatePrayer() {
+      const styleEl = document.getElementById('style-select');
+      const lengthEl = document.getElementById('length-select');
+      const style = styleEl.value;
+      const styleName = styleEl.options[styleEl.selectedIndex].text;
+      const lengthName = lengthEl.options[lengthEl.selectedIndex].text;
+
+      document.getElementById('result-label').textContent = styleName + ' \u00b7 ' + lengthName;
+
+      const preview = (samplePreviews[style] || samplePreviews.spiritual).split('\n');
+      document.getElementById('result-preview-text').innerHTML = preview.join('<br>');
+
+      const blurred = (blurredEndings[style] || blurredEndings.spiritual).split('\n');
+      document.getElementById('result-blur-text').innerHTML = blurred.join('<br>');
 
       const result = document.getElementById('prayer-result');
       result.classList.add('visible');
       result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function selectCandle(btn) {
+      document.querySelectorAll('.candle-amount').forEach(b => b.classList.remove('candle-amount--active'));
+      btn.classList.add('candle-amount--active');
     }
   </script>
 
